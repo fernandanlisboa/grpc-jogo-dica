@@ -1,0 +1,35 @@
+4 jogadores:
+- 2 duplas
+- 4 clientes
+- 1 servidor 
+
+
+rodada:
+- duplas: números pares; números ímpares
+- sorteia o jogador que iniciará a partida
+- 1ª:
+    - o que foi sorteado diz a palavra escolhida para o jogador seguinte
+    - o jogador seguinte, envia uma dica para todos
+    - sua dupla diz um palpite
+
+configuração dos jogadores:
+- duplas:
+    - preencher o array de jogadores [dupla 1: par (0, 2); dupla 2: ímpar (1,3)]
+- sorteio de quem escolhe a palavra:
+    - random do array
+
+configuração da partida:
+    - jogador inicial escolhe a palavra
+    - jogador seguinte (obrigatoriamente não é sua dupla) recebe a palavra
+
+looping principal:
+    - jogador N insere a dica
+    - todos os jogadores (exceto o N) recebem a dica 
+    - jogador N+2 envia o palpite
+    - o servidor envia a todos se a dupla ganhou o jogo
+    - se acertou:
+        - encerra a partida
+    - se errou:
+        - repete o mesmo processo para o próximo jogador
+
+    
