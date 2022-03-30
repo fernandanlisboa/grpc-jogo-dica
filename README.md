@@ -1,2 +1,2 @@
-# grpc-jogo-dica
+# Jogo Dica
  Jogo exemplificando o uso da biblioteca gRPC
