@@ -11,12 +11,17 @@ class Client:
         # channel = grpc.insecure_channel(f'{endereco}:{porta}')
         channel = grpc.insecure_channel('localhost:50051')
         self.stub = dica_pb2_grpc.DicaServiceStub(channel)
-        #threading.Thread(target=self.__entrar_jogo, daemon=True).start()
         self.__entrar_jogo()
+        threading.Thread(target=self.__escutar_jogo).start()
         # threading.Thread(target=self.__l)
 
-    def __escutar_dicas(self):
-        return True
+    def __escutar_jogo(self):
+        print('Esperando Jogadores')
+        response = self.stub.PartidaStream(dica_pb2.MensagemVazia())
+        if(response.nome == self.nome):
+            palavra = str(input('É a sua vez de escolher a palavra'))
+            self.stub.EscolherPalavra(dica_pb2.Palavra(palavra=palavra))
+
 
     def __entrar_jogo(self):
         response = self.stub.CriarJogador(

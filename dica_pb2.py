@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"\x1a\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\"E\n\x0fPalpiteResposta\x12\x0f\n\x07\x61\x63\x65rtou\x18\x01 \x01(\x08\x12\x10\n\x08mensagem\x18\x02 \x01(\t\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x0f\n\rMensagemVazia2\xf8\x02\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x44\n\nVerPalavra\x12\x1c.configuration.MensagemVazia\x1a\x16.configuration.Palavra\"\x00\x12\x41\n\nRecebeDica\x12\x13.configuration.Dica\x1a\x1c.configuration.MensagemVazia\"\x00\x12I\n\rRecebePalpite\x12\x16.configuration.Palpite\x1a\x1e.configuration.PalpiteResposta\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"\x1a\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\"E\n\x0fPalpiteResposta\x12\x0f\n\x07\x61\x63\x65rtou\x18\x01 \x01(\x08\x12\x10\n\x08mensagem\x18\x02 \x01(\t\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x0f\n\rMensagemVazia2\xc7\x03\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x44\n\nVerPalavra\x12\x1c.configuration.MensagemVazia\x1a\x16.configuration.Palavra\"\x00\x12\x41\n\nRecebeDica\x12\x13.configuration.Dica\x1a\x1c.configuration.MensagemVazia\"\x00\x12I\n\rRecebePalpite\x12\x16.configuration.Palpite\x1a\x1e.configuration.PalpiteResposta\"\x00\x12M\n\rPartidaStream\x12\x1c.configuration.MensagemVazia\x1a\x1c.configuration.MensagemVazia\"\x00\x62\x06proto3'
 )
 
 
@@ -377,7 +377,7 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=326,
-  serialized_end=702,
+  serialized_end=781,
   methods=[
   _descriptor.MethodDescriptor(
     name='CriarJogador',
@@ -426,6 +426,16 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_PALPITE,
     output_type=_PALPITERESPOSTA,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='PartidaStream',
+    full_name='configuration.DicaService.PartidaStream',
+    index=5,
+    containing_service=None,
+    input_type=_MENSAGEMVAZIA,
+    output_type=_MENSAGEMVAZIA,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

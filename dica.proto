@@ -17,6 +17,9 @@ service DicaService {
 
     // recebe o palpite do jogador
     rpc RecebePalpite(Palpite) returns(PalpiteResposta) {};
+
+    // loop da partida
+    rpc PartidaStream(MensagemVazia) returns(NomeJogadorResp) {};
 }
 
 message NomeJogador {

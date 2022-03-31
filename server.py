@@ -13,10 +13,27 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         self.palavra = ''
         self.numJogadores = 4
         self.jogadores = []
+        self.dicas = []
+        self.vez = 0
+
+    def PartidaStream(self, request, context):
+        print('Esperando Jogadores')
+        while len(self.jogadores) < 2:
+            espera = True
+            #fica aqui paradinho
+
+        print('calma')
+        print('Dupla 1: ' + self.jogadores[0] + ' e ' + self.jogadores[1])
+        #print('Dupla 2: ' + self.jogadores[1] + ' e ' + self.jogadores[3])
+
+        #trocar por sorteio
+        primeiro_jogador = 0
+        return dica_pb2.NomeJogadorResp(nome=self.jogadores[primeiro_jogador], recebida=True)
+
 
     def CriarJogador(self, request, context):
         self.jogadores.append(request.nome)
-        return dica_pb2.NomeJogadorResp(nome=request.nome, recebida=request.recebida)
+        return dica_pb2.NomeJogadorResp(nome=request.nome, recebida=True)
 
     def EscolherPalavra(self, request, context):
         self.palavra = request.palavra
