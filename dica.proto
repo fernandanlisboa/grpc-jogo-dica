@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package configuration;
 
-service PartidaService {
+service DicaService {
     //Recebe o nome dos jogadores
     rpc CriarJogador(NomeJogador) returns (NomeJogadorResp) {};
 

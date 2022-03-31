@@ -5,7 +5,7 @@ import grpc
 import dica_pb2 as dica__pb2
 
 
-class PartidaServiceStub(object):
+class DicaServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,33 +15,33 @@ class PartidaServiceStub(object):
             channel: A grpc.Channel.
         """
         self.CriarJogador = channel.unary_unary(
-                '/configuration.PartidaService/CriarJogador',
+                '/configuration.DicaService/CriarJogador',
                 request_serializer=dica__pb2.NomeJogador.SerializeToString,
                 response_deserializer=dica__pb2.NomeJogadorResp.FromString,
                 )
         self.EscolherPalavra = channel.unary_unary(
-                '/configuration.PartidaService/EscolherPalavra',
+                '/configuration.DicaService/EscolherPalavra',
                 request_serializer=dica__pb2.Palavra.SerializeToString,
                 response_deserializer=dica__pb2.PalavraResp.FromString,
                 )
         self.VerPalavra = channel.unary_unary(
-                '/configuration.PartidaService/VerPalavra',
+                '/configuration.DicaService/VerPalavra',
                 request_serializer=dica__pb2.MensagemVazia.SerializeToString,
                 response_deserializer=dica__pb2.Palavra.FromString,
                 )
         self.RecebeDica = channel.unary_unary(
-                '/configuration.PartidaService/RecebeDica',
+                '/configuration.DicaService/RecebeDica',
                 request_serializer=dica__pb2.Dica.SerializeToString,
                 response_deserializer=dica__pb2.MensagemVazia.FromString,
                 )
         self.RecebePalpite = channel.unary_unary(
-                '/configuration.PartidaService/RecebePalpite',
+                '/configuration.DicaService/RecebePalpite',
                 request_serializer=dica__pb2.Palpite.SerializeToString,
                 response_deserializer=dica__pb2.PalpiteResposta.FromString,
                 )
 
 
-class PartidaServiceServicer(object):
+class DicaServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CriarJogador(self, request, context):
@@ -80,7 +80,7 @@ class PartidaServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_PartidaServiceServicer_to_server(servicer, server):
+def add_DicaServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CriarJogador': grpc.unary_unary_rpc_method_handler(
                     servicer.CriarJogador,
@@ -109,12 +109,12 @@ def add_PartidaServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'configuration.PartidaService', rpc_method_handlers)
+            'configuration.DicaService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class PartidaService(object):
+class DicaService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -128,7 +128,7 @@ class PartidaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.PartidaService/CriarJogador',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/CriarJogador',
             dica__pb2.NomeJogador.SerializeToString,
             dica__pb2.NomeJogadorResp.FromString,
             options, channel_credentials,
@@ -145,7 +145,7 @@ class PartidaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.PartidaService/EscolherPalavra',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/EscolherPalavra',
             dica__pb2.Palavra.SerializeToString,
             dica__pb2.PalavraResp.FromString,
             options, channel_credentials,
@@ -162,7 +162,7 @@ class PartidaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.PartidaService/VerPalavra',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/VerPalavra',
             dica__pb2.MensagemVazia.SerializeToString,
             dica__pb2.Palavra.FromString,
             options, channel_credentials,
@@ -179,7 +179,7 @@ class PartidaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.PartidaService/RecebeDica',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RecebeDica',
             dica__pb2.Dica.SerializeToString,
             dica__pb2.MensagemVazia.FromString,
             options, channel_credentials,
@@ -196,7 +196,7 @@ class PartidaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.PartidaService/RecebePalpite',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RecebePalpite',
             dica__pb2.Palpite.SerializeToString,
             dica__pb2.PalpiteResposta.FromString,
             options, channel_credentials,

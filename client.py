@@ -1,8 +1,8 @@
 import threading
 from urllib import response
 import grpc
-import config_partida_pb2_grpc
-import config_partida_pb2
+import dica_pb2_grpc
+import dica_pb2
 
 
 class Client:
@@ -10,7 +10,7 @@ class Client:
         self.nome = u
         # channel = grpc.insecure_channel(f'{endereco}:{porta}')
         channel = grpc.insecure_channel('localhost:50051')
-        self.stub_partida = config_partida_pb2_grpc.PartidaServiceStub(channel)
+        self.stub_partida = dica_pb2_grpc.PartidaServiceStub(channel)
         threading.Thread(target=self.__entrar_jogo, daemon=True).start()
         # self.__entrar_jogo()
         # threading.Thread(target=self.__l)
@@ -21,7 +21,7 @@ class Client:
     def __entrar_jogo(self):
         print('entrouu')
         response = self.stub_partida.CriarJogador(
-            config_partida_pb2.NomeJogador(nome=self.nome))
+            dica_pb2.NomeJogador(nome=self.nome))
         print(f'resp: {response}')
 
 
