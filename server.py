@@ -10,12 +10,12 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class DicaServer(dica_pb2_grpc.DicaServiceServicer):
 
     def __init__(self) :
-        self.palavra
+        self.palavra = ''
         self.numJogadores = 4
         self.jogadores = []
 
     def CriarJogador(self, request, context):
-        self.jogadores.append(request.name)
+        self.jogadores.append(request.nome)
         return dica_pb2.NomeJogadorResp(nome=request.nome, recebida=request.recebida)
 
     def EscolherPalavra(self, request, context):
@@ -40,7 +40,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    dica_pb2_grpc.add_PartidaServiceServicer_to_server(
+    dica_pb2_grpc.add_DicaServiceServicer_to_server(
         DicaServer(), server)
 
     for i in range(50050, 50053, 1):
