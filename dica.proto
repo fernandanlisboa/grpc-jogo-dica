@@ -11,6 +11,12 @@ service PartidaService {
 
     //O jogador que fornece a dica deve receber a palavra
     rpc VerPalavra(MensagemVazia) returns (Palavra) {};
+
+    // recebe a dica do jogador 
+    rpc RecebeDica(Dica) returns (MensagemVazia) {};
+
+    // recebe o palpite do jogador
+    rpc RecebePalpite(Palpite) returns(PalpiteResposta) {};
 }
 
 message NomeJogador {
@@ -29,6 +35,20 @@ message Palavra {
 message PalavraResp {
     string palavra = 1;
     bool recebida = 2;
+}
+
+message Dica {
+    string dica = 1;
+}
+
+message Palpite {
+    string palpite = 1;
+}
+
+message PalpiteResposta {
+    bool acertou = 1;
+    string mensagem = 2;
+    bool recebeu = 3;
 }
 
 message MensagemVazia {
