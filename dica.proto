@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 package configuration;
 
 service DicaService {
@@ -10,16 +12,25 @@ service DicaService {
     rpc EscolherPalavra(Palavra) returns (PalavraResp){};
 
     //O jogador que fornece a dica deve receber a palavra
-    rpc VerPalavra(MensagemVazia) returns (Palavra) {};
+    rpc VerPalavra(google.protobuf.Empty) returns (PalavraResp) {};
 
-    // recebe a dica do jogador 
-    rpc RecebeDica(Dica) returns (MensagemVazia) {};
+    // envia a dica do jogador 
+    rpc VerDica(google.protobuf.Empty) returns (Dica) {};
+
+    // o jogador define a dica e retorna o nome do jogador que realizará o palpite
+    rpc DarDica(Dica) returns (NomeJogadorResp) {};
 
     // recebe o palpite do jogador
-    rpc RecebePalpite(Palpite) returns(PalpiteResposta) {};
+    rpc DarPalpite(Palpite) returns (google.protobuf.Empty) {};
+
+    // mostra o palpite do jogador
+    rpc VerPalpite(google.protobuf.Empty) returns (PalpiteResposta) {};
 
     // loop da partida
-    rpc PartidaStream(MensagemVazia) returns(NomeJogadorResp) {};
+    rpc PartidaStream(Palpite) returns (NomeJogadorResp) {};
+
+    // loop da rodada
+    rpc RodadaStream(google.protobuf.Empty) returns(NomeJogadorResp) {};
 }
 
 message NomeJogador {
@@ -48,12 +59,13 @@ message Palpite {
     string palpite = 1;
 }
 
-message PalpiteResposta {
-    bool acertou = 1;
-    string mensagem = 2;
-    bool recebeu = 3;
+message RodadaResposta {
+    bool inicia = 1;
 }
 
-message MensagemVazia {
 
+message PalpiteResposta {
+    string palpite = 1;
+    bool acertou = 2;
+    bool recebeu = 3;
 }

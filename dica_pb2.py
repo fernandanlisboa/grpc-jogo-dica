@@ -11,6 +11,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -19,8 +20,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"\x1a\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\"E\n\x0fPalpiteResposta\x12\x0f\n\x07\x61\x63\x65rtou\x18\x01 \x01(\x08\x12\x10\n\x08mensagem\x18\x02 \x01(\t\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x0f\n\rMensagemVazia2\xc7\x03\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x44\n\nVerPalavra\x12\x1c.configuration.MensagemVazia\x1a\x16.configuration.Palavra\"\x00\x12\x41\n\nRecebeDica\x12\x13.configuration.Dica\x1a\x1c.configuration.MensagemVazia\"\x00\x12I\n\rRecebePalpite\x12\x16.configuration.Palpite\x1a\x1e.configuration.PalpiteResposta\"\x00\x12M\n\rPartidaStream\x12\x1c.configuration.MensagemVazia\x1a\x1c.configuration.MensagemVazia\"\x00\x62\x06proto3'
-)
+  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"\x1a\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\" \n\x0eRodadaResposta\x12\x0e\n\x06inicia\x18\x01 \x01(\x08\"D\n\x0fPalpiteResposta\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x65rtou\x18\x02 \x01(\x08\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\x32\x81\x05\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x42\n\nVerPalavra\x12\x16.google.protobuf.Empty\x1a\x1a.configuration.PalavraResp\"\x00\x12\x38\n\x07VerDica\x12\x16.google.protobuf.Empty\x1a\x13.configuration.Dica\"\x00\x12@\n\x07\x44\x61rDica\x12\x13.configuration.Dica\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nDarPalpite\x12\x16.configuration.Palpite\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nVerPalpite\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.PalpiteResposta\"\x00\x12I\n\rPartidaStream\x12\x16.configuration.Palpite\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12H\n\x0cRodadaStream\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.NomeJogadorResp\"\x00\x62\x06proto3'
+  ,
+  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
 
 
@@ -52,8 +54,8 @@ _NOMEJOGADOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29,
-  serialized_end=56,
+  serialized_start=58,
+  serialized_end=85,
 )
 
 
@@ -91,8 +93,8 @@ _NOMEJOGADORRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=58,
-  serialized_end=107,
+  serialized_start=87,
+  serialized_end=136,
 )
 
 
@@ -123,8 +125,8 @@ _PALAVRA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=109,
-  serialized_end=135,
+  serialized_start=138,
+  serialized_end=164,
 )
 
 
@@ -162,8 +164,8 @@ _PALAVRARESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=137,
-  serialized_end=185,
+  serialized_start=166,
+  serialized_end=214,
 )
 
 
@@ -194,8 +196,8 @@ _DICA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=187,
-  serialized_end=207,
+  serialized_start=216,
+  serialized_end=236,
 )
 
 
@@ -226,8 +228,40 @@ _PALPITE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=209,
-  serialized_end=235,
+  serialized_start=238,
+  serialized_end=264,
+)
+
+
+_RODADARESPOSTA = _descriptor.Descriptor(
+  name='RodadaResposta',
+  full_name='configuration.RodadaResposta',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='inicia', full_name='configuration.RodadaResposta.inicia', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=266,
+  serialized_end=298,
 )
 
 
@@ -240,16 +274,16 @@ _PALPITERESPOSTA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='acertou', full_name='configuration.PalpiteResposta.acertou', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='palpite', full_name='configuration.PalpiteResposta.palpite', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='mensagem', full_name='configuration.PalpiteResposta.mensagem', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='acertou', full_name='configuration.PalpiteResposta.acertou', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -272,33 +306,8 @@ _PALPITERESPOSTA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=237,
-  serialized_end=306,
-)
-
-
-_MENSAGEMVAZIA = _descriptor.Descriptor(
-  name='MensagemVazia',
-  full_name='configuration.MensagemVazia',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=308,
-  serialized_end=323,
+  serialized_start=300,
+  serialized_end=368,
 )
 
 DESCRIPTOR.message_types_by_name['NomeJogador'] = _NOMEJOGADOR
@@ -307,8 +316,8 @@ DESCRIPTOR.message_types_by_name['Palavra'] = _PALAVRA
 DESCRIPTOR.message_types_by_name['PalavraResp'] = _PALAVRARESP
 DESCRIPTOR.message_types_by_name['Dica'] = _DICA
 DESCRIPTOR.message_types_by_name['Palpite'] = _PALPITE
+DESCRIPTOR.message_types_by_name['RodadaResposta'] = _RODADARESPOSTA
 DESCRIPTOR.message_types_by_name['PalpiteResposta'] = _PALPITERESPOSTA
-DESCRIPTOR.message_types_by_name['MensagemVazia'] = _MENSAGEMVAZIA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 NomeJogador = _reflection.GeneratedProtocolMessageType('NomeJogador', (_message.Message,), {
@@ -353,19 +362,19 @@ Palpite = _reflection.GeneratedProtocolMessageType('Palpite', (_message.Message,
   })
 _sym_db.RegisterMessage(Palpite)
 
+RodadaResposta = _reflection.GeneratedProtocolMessageType('RodadaResposta', (_message.Message,), {
+  'DESCRIPTOR' : _RODADARESPOSTA,
+  '__module__' : 'dica_pb2'
+  # @@protoc_insertion_point(class_scope:configuration.RodadaResposta)
+  })
+_sym_db.RegisterMessage(RodadaResposta)
+
 PalpiteResposta = _reflection.GeneratedProtocolMessageType('PalpiteResposta', (_message.Message,), {
   'DESCRIPTOR' : _PALPITERESPOSTA,
   '__module__' : 'dica_pb2'
   # @@protoc_insertion_point(class_scope:configuration.PalpiteResposta)
   })
 _sym_db.RegisterMessage(PalpiteResposta)
-
-MensagemVazia = _reflection.GeneratedProtocolMessageType('MensagemVazia', (_message.Message,), {
-  'DESCRIPTOR' : _MENSAGEMVAZIA,
-  '__module__' : 'dica_pb2'
-  # @@protoc_insertion_point(class_scope:configuration.MensagemVazia)
-  })
-_sym_db.RegisterMessage(MensagemVazia)
 
 
 
@@ -376,8 +385,8 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=326,
-  serialized_end=781,
+  serialized_start=371,
+  serialized_end=1012,
   methods=[
   _descriptor.MethodDescriptor(
     name='CriarJogador',
@@ -404,27 +413,47 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
     full_name='configuration.DicaService.VerPalavra',
     index=2,
     containing_service=None,
-    input_type=_MENSAGEMVAZIA,
-    output_type=_PALAVRA,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_PALAVRARESP,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='RecebeDica',
-    full_name='configuration.DicaService.RecebeDica',
+    name='VerDica',
+    full_name='configuration.DicaService.VerDica',
     index=3,
     containing_service=None,
-    input_type=_DICA,
-    output_type=_MENSAGEMVAZIA,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_DICA,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='RecebePalpite',
-    full_name='configuration.DicaService.RecebePalpite',
+    name='DarDica',
+    full_name='configuration.DicaService.DarDica',
     index=4,
     containing_service=None,
+    input_type=_DICA,
+    output_type=_NOMEJOGADORRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DarPalpite',
+    full_name='configuration.DicaService.DarPalpite',
+    index=5,
+    containing_service=None,
     input_type=_PALPITE,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='VerPalpite',
+    full_name='configuration.DicaService.VerPalpite',
+    index=6,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     output_type=_PALPITERESPOSTA,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
@@ -432,10 +461,20 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='PartidaStream',
     full_name='configuration.DicaService.PartidaStream',
-    index=5,
+    index=7,
     containing_service=None,
-    input_type=_MENSAGEMVAZIA,
-    output_type=_MENSAGEMVAZIA,
+    input_type=_PALPITE,
+    output_type=_NOMEJOGADORRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RodadaStream',
+    full_name='configuration.DicaService.RodadaStream',
+    index=8,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_NOMEJOGADORRESP,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

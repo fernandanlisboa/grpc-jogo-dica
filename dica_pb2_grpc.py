@@ -3,6 +3,7 @@
 import grpc
 
 import dica_pb2 as dica__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class DicaServiceStub(object):
@@ -26,23 +27,38 @@ class DicaServiceStub(object):
                 )
         self.VerPalavra = channel.unary_unary(
                 '/configuration.DicaService/VerPalavra',
-                request_serializer=dica__pb2.MensagemVazia.SerializeToString,
-                response_deserializer=dica__pb2.Palavra.FromString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=dica__pb2.PalavraResp.FromString,
                 )
-        self.RecebeDica = channel.unary_unary(
-                '/configuration.DicaService/RecebeDica',
+        self.VerDica = channel.unary_unary(
+                '/configuration.DicaService/VerDica',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=dica__pb2.Dica.FromString,
+                )
+        self.DarDica = channel.unary_unary(
+                '/configuration.DicaService/DarDica',
                 request_serializer=dica__pb2.Dica.SerializeToString,
-                response_deserializer=dica__pb2.MensagemVazia.FromString,
+                response_deserializer=dica__pb2.NomeJogadorResp.FromString,
                 )
-        self.RecebePalpite = channel.unary_unary(
-                '/configuration.DicaService/RecebePalpite',
+        self.DarPalpite = channel.unary_unary(
+                '/configuration.DicaService/DarPalpite',
                 request_serializer=dica__pb2.Palpite.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.VerPalpite = channel.unary_unary(
+                '/configuration.DicaService/VerPalpite',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=dica__pb2.PalpiteResposta.FromString,
                 )
         self.PartidaStream = channel.unary_unary(
                 '/configuration.DicaService/PartidaStream',
-                request_serializer=dica__pb2.MensagemVazia.SerializeToString,
-                response_deserializer=dica__pb2.MensagemVazia.FromString,
+                request_serializer=dica__pb2.Palpite.SerializeToString,
+                response_deserializer=dica__pb2.NomeJogadorResp.FromString,
+                )
+        self.RodadaStream = channel.unary_unary(
+                '/configuration.DicaService/RodadaStream',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=dica__pb2.NomeJogadorResp.FromString,
                 )
 
 
@@ -70,15 +86,29 @@ class DicaServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RecebeDica(self, request, context):
-        """recebe a dica do jogador 
+    def VerDica(self, request, context):
+        """envia a dica do jogador 
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RecebePalpite(self, request, context):
+    def DarDica(self, request, context):
+        """o jogador define a dica e retorna o nome do jogador que realizará o palpite
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DarPalpite(self, request, context):
         """recebe o palpite do jogador
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def VerPalpite(self, request, context):
+        """mostra o palpite do jogador
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -86,6 +116,13 @@ class DicaServiceServicer(object):
 
     def PartidaStream(self, request, context):
         """loop da partida
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RodadaStream(self, request, context):
+        """loop da rodada
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -106,23 +143,38 @@ def add_DicaServiceServicer_to_server(servicer, server):
             ),
             'VerPalavra': grpc.unary_unary_rpc_method_handler(
                     servicer.VerPalavra,
-                    request_deserializer=dica__pb2.MensagemVazia.FromString,
-                    response_serializer=dica__pb2.Palavra.SerializeToString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=dica__pb2.PalavraResp.SerializeToString,
             ),
-            'RecebeDica': grpc.unary_unary_rpc_method_handler(
-                    servicer.RecebeDica,
+            'VerDica': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerDica,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=dica__pb2.Dica.SerializeToString,
+            ),
+            'DarDica': grpc.unary_unary_rpc_method_handler(
+                    servicer.DarDica,
                     request_deserializer=dica__pb2.Dica.FromString,
-                    response_serializer=dica__pb2.MensagemVazia.SerializeToString,
+                    response_serializer=dica__pb2.NomeJogadorResp.SerializeToString,
             ),
-            'RecebePalpite': grpc.unary_unary_rpc_method_handler(
-                    servicer.RecebePalpite,
+            'DarPalpite': grpc.unary_unary_rpc_method_handler(
+                    servicer.DarPalpite,
                     request_deserializer=dica__pb2.Palpite.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'VerPalpite': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerPalpite,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=dica__pb2.PalpiteResposta.SerializeToString,
             ),
             'PartidaStream': grpc.unary_unary_rpc_method_handler(
                     servicer.PartidaStream,
-                    request_deserializer=dica__pb2.MensagemVazia.FromString,
-                    response_serializer=dica__pb2.MensagemVazia.SerializeToString,
+                    request_deserializer=dica__pb2.Palpite.FromString,
+                    response_serializer=dica__pb2.NomeJogadorResp.SerializeToString,
+            ),
+            'RodadaStream': grpc.unary_unary_rpc_method_handler(
+                    servicer.RodadaStream,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=dica__pb2.NomeJogadorResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -180,13 +232,13 @@ class DicaService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/VerPalavra',
-            dica__pb2.MensagemVazia.SerializeToString,
-            dica__pb2.Palavra.FromString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dica__pb2.PalavraResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RecebeDica(request,
+    def VerDica(request,
             target,
             options=(),
             channel_credentials=None,
@@ -196,14 +248,31 @@ class DicaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RecebeDica',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/VerDica',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dica__pb2.Dica.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DarDica(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/DarDica',
             dica__pb2.Dica.SerializeToString,
-            dica__pb2.MensagemVazia.FromString,
+            dica__pb2.NomeJogadorResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RecebePalpite(request,
+    def DarPalpite(request,
             target,
             options=(),
             channel_credentials=None,
@@ -213,8 +282,25 @@ class DicaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RecebePalpite',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/DarPalpite',
             dica__pb2.Palpite.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VerPalpite(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/VerPalpite',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             dica__pb2.PalpiteResposta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -231,7 +317,24 @@ class DicaService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/PartidaStream',
-            dica__pb2.MensagemVazia.SerializeToString,
-            dica__pb2.MensagemVazia.FromString,
+            dica__pb2.Palpite.SerializeToString,
+            dica__pb2.NomeJogadorResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RodadaStream(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RodadaStream',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dica__pb2.NomeJogadorResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
