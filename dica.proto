@@ -29,8 +29,17 @@ service DicaService {
     // loop da partida
     rpc PartidaStream(Palpite) returns (NomeJogadorResp) {};
 
-    // loop da rodada
-    rpc RodadaStream(google.protobuf.Empty) returns(NomeJogadorResp) {};
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc ConfereEspera(google.protobuf.Empty) returns(EsperaResp) {};
+
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc AlteraEspera(Espera) returns(EsperaResp) {};
+
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc ConfereVez(google.protobuf.Empty) returns(NomeJogadorResp) {};
+
+    //Verifica se o jogo acabou e retorna o vencedor
+    rpc ConfereFim(google.protobuf.Empty) returns(FimResp) {};
 }
 
 message NomeJogador {
@@ -57,15 +66,30 @@ message Dica {
 
 message Palpite {
     string palpite = 1;
+    string jogador = 2;
 }
 
 message RodadaResposta {
     bool inicia = 1;
 }
 
-
 message PalpiteResposta {
     string palpite = 1;
     bool acertou = 2;
     bool recebeu = 3;
+}
+
+message Espera {
+    bool espera = 1;
+}
+
+message EsperaResp {
+    bool espera = 1;
+    string jogador = 2;
+    bool recebida = 3;
+}
+
+message FimResp {
+    bool fim = 1;
+    bool ganhador = 2;
 }

@@ -55,10 +55,25 @@ class DicaServiceStub(object):
                 request_serializer=dica__pb2.Palpite.SerializeToString,
                 response_deserializer=dica__pb2.NomeJogadorResp.FromString,
                 )
-        self.RodadaStream = channel.unary_unary(
-                '/configuration.DicaService/RodadaStream',
+        self.ConfereEspera = channel.unary_unary(
+                '/configuration.DicaService/ConfereEspera',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=dica__pb2.EsperaResp.FromString,
+                )
+        self.AlteraEspera = channel.unary_unary(
+                '/configuration.DicaService/AlteraEspera',
+                request_serializer=dica__pb2.Espera.SerializeToString,
+                response_deserializer=dica__pb2.EsperaResp.FromString,
+                )
+        self.ConfereVez = channel.unary_unary(
+                '/configuration.DicaService/ConfereVez',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=dica__pb2.NomeJogadorResp.FromString,
+                )
+        self.ConfereFim = channel.unary_unary(
+                '/configuration.DicaService/ConfereFim',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=dica__pb2.FimResp.FromString,
                 )
 
 
@@ -121,8 +136,29 @@ class DicaServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RodadaStream(self, request, context):
-        """loop da rodada
+    def ConfereEspera(self, request, context):
+        """Verifica se os jogadores estão esperando um evento do sistema
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AlteraEspera(self, request, context):
+        """Verifica se os jogadores estão esperando um evento do sistema
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ConfereVez(self, request, context):
+        """Verifica se os jogadores estão esperando um evento do sistema
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ConfereFim(self, request, context):
+        """Verifica se o jogo acabou e retorna o vencedor
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -171,10 +207,25 @@ def add_DicaServiceServicer_to_server(servicer, server):
                     request_deserializer=dica__pb2.Palpite.FromString,
                     response_serializer=dica__pb2.NomeJogadorResp.SerializeToString,
             ),
-            'RodadaStream': grpc.unary_unary_rpc_method_handler(
-                    servicer.RodadaStream,
+            'ConfereEspera': grpc.unary_unary_rpc_method_handler(
+                    servicer.ConfereEspera,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=dica__pb2.EsperaResp.SerializeToString,
+            ),
+            'AlteraEspera': grpc.unary_unary_rpc_method_handler(
+                    servicer.AlteraEspera,
+                    request_deserializer=dica__pb2.Espera.FromString,
+                    response_serializer=dica__pb2.EsperaResp.SerializeToString,
+            ),
+            'ConfereVez': grpc.unary_unary_rpc_method_handler(
+                    servicer.ConfereVez,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=dica__pb2.NomeJogadorResp.SerializeToString,
+            ),
+            'ConfereFim': grpc.unary_unary_rpc_method_handler(
+                    servicer.ConfereFim,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=dica__pb2.FimResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -323,7 +374,7 @@ class DicaService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RodadaStream(request,
+    def ConfereEspera(request,
             target,
             options=(),
             channel_credentials=None,
@@ -333,8 +384,59 @@ class DicaService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/RodadaStream',
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/ConfereEspera',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dica__pb2.EsperaResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AlteraEspera(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/AlteraEspera',
+            dica__pb2.Espera.SerializeToString,
+            dica__pb2.EsperaResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ConfereVez(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/ConfereVez',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             dica__pb2.NomeJogadorResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ConfereFim(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/ConfereFim',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dica__pb2.FimResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

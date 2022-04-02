@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"\x1a\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\" \n\x0eRodadaResposta\x12\x0e\n\x06inicia\x18\x01 \x01(\x08\"D\n\x0fPalpiteResposta\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x65rtou\x18\x02 \x01(\x08\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\x32\x81\x05\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x42\n\nVerPalavra\x12\x16.google.protobuf.Empty\x1a\x1a.configuration.PalavraResp\"\x00\x12\x38\n\x07VerDica\x12\x16.google.protobuf.Empty\x1a\x13.configuration.Dica\"\x00\x12@\n\x07\x44\x61rDica\x12\x13.configuration.Dica\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nDarPalpite\x12\x16.configuration.Palpite\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nVerPalpite\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.PalpiteResposta\"\x00\x12I\n\rPartidaStream\x12\x16.configuration.Palpite\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12H\n\x0cRodadaStream\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.NomeJogadorResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"+\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07jogador\x18\x02 \x01(\t\" \n\x0eRodadaResposta\x12\x0e\n\x06inicia\x18\x01 \x01(\x08\"D\n\x0fPalpiteResposta\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x65rtou\x18\x02 \x01(\x08\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x18\n\x06\x45spera\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\"?\n\nEsperaResp\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\x12\x0f\n\x07jogador\x18\x02 \x01(\t\x12\x10\n\x08recebida\x18\x03 \x01(\x08\"(\n\x07\x46imResp\x12\x0b\n\x03\x66im\x18\x01 \x01(\x08\x12\x10\n\x08ganhador\x18\x02 \x01(\x08\x32\xc9\x06\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x42\n\nVerPalavra\x12\x16.google.protobuf.Empty\x1a\x1a.configuration.PalavraResp\"\x00\x12\x38\n\x07VerDica\x12\x16.google.protobuf.Empty\x1a\x13.configuration.Dica\"\x00\x12@\n\x07\x44\x61rDica\x12\x13.configuration.Dica\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nDarPalpite\x12\x16.configuration.Palpite\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nVerPalpite\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.PalpiteResposta\"\x00\x12I\n\rPartidaStream\x12\x16.configuration.Palpite\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12\x44\n\rConfereEspera\x12\x16.google.protobuf.Empty\x1a\x19.configuration.EsperaResp\"\x00\x12\x42\n\x0c\x41lteraEspera\x12\x15.configuration.Espera\x1a\x19.configuration.EsperaResp\"\x00\x12\x46\n\nConfereVez\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nConfereFim\x12\x16.google.protobuf.Empty\x1a\x16.configuration.FimResp\"\x00\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -216,6 +216,13 @@ _PALPITE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='jogador', full_name='configuration.Palpite.jogador', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -229,7 +236,7 @@ _PALPITE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=238,
-  serialized_end=264,
+  serialized_end=281,
 )
 
 
@@ -260,8 +267,8 @@ _RODADARESPOSTA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=266,
-  serialized_end=298,
+  serialized_start=283,
+  serialized_end=315,
 )
 
 
@@ -306,8 +313,125 @@ _PALPITERESPOSTA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=300,
-  serialized_end=368,
+  serialized_start=317,
+  serialized_end=385,
+)
+
+
+_ESPERA = _descriptor.Descriptor(
+  name='Espera',
+  full_name='configuration.Espera',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='espera', full_name='configuration.Espera.espera', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=387,
+  serialized_end=411,
+)
+
+
+_ESPERARESP = _descriptor.Descriptor(
+  name='EsperaResp',
+  full_name='configuration.EsperaResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='espera', full_name='configuration.EsperaResp.espera', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='jogador', full_name='configuration.EsperaResp.jogador', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='recebida', full_name='configuration.EsperaResp.recebida', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=413,
+  serialized_end=476,
+)
+
+
+_FIMRESP = _descriptor.Descriptor(
+  name='FimResp',
+  full_name='configuration.FimResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='fim', full_name='configuration.FimResp.fim', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ganhador', full_name='configuration.FimResp.ganhador', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=478,
+  serialized_end=518,
 )
 
 DESCRIPTOR.message_types_by_name['NomeJogador'] = _NOMEJOGADOR
@@ -318,6 +442,9 @@ DESCRIPTOR.message_types_by_name['Dica'] = _DICA
 DESCRIPTOR.message_types_by_name['Palpite'] = _PALPITE
 DESCRIPTOR.message_types_by_name['RodadaResposta'] = _RODADARESPOSTA
 DESCRIPTOR.message_types_by_name['PalpiteResposta'] = _PALPITERESPOSTA
+DESCRIPTOR.message_types_by_name['Espera'] = _ESPERA
+DESCRIPTOR.message_types_by_name['EsperaResp'] = _ESPERARESP
+DESCRIPTOR.message_types_by_name['FimResp'] = _FIMRESP
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 NomeJogador = _reflection.GeneratedProtocolMessageType('NomeJogador', (_message.Message,), {
@@ -376,6 +503,27 @@ PalpiteResposta = _reflection.GeneratedProtocolMessageType('PalpiteResposta', (_
   })
 _sym_db.RegisterMessage(PalpiteResposta)
 
+Espera = _reflection.GeneratedProtocolMessageType('Espera', (_message.Message,), {
+  'DESCRIPTOR' : _ESPERA,
+  '__module__' : 'dica_pb2'
+  # @@protoc_insertion_point(class_scope:configuration.Espera)
+  })
+_sym_db.RegisterMessage(Espera)
+
+EsperaResp = _reflection.GeneratedProtocolMessageType('EsperaResp', (_message.Message,), {
+  'DESCRIPTOR' : _ESPERARESP,
+  '__module__' : 'dica_pb2'
+  # @@protoc_insertion_point(class_scope:configuration.EsperaResp)
+  })
+_sym_db.RegisterMessage(EsperaResp)
+
+FimResp = _reflection.GeneratedProtocolMessageType('FimResp', (_message.Message,), {
+  'DESCRIPTOR' : _FIMRESP,
+  '__module__' : 'dica_pb2'
+  # @@protoc_insertion_point(class_scope:configuration.FimResp)
+  })
+_sym_db.RegisterMessage(FimResp)
+
 
 
 _DICASERVICE = _descriptor.ServiceDescriptor(
@@ -385,8 +533,8 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=371,
-  serialized_end=1012,
+  serialized_start=521,
+  serialized_end=1362,
   methods=[
   _descriptor.MethodDescriptor(
     name='CriarJogador',
@@ -469,12 +617,42 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='RodadaStream',
-    full_name='configuration.DicaService.RodadaStream',
+    name='ConfereEspera',
+    full_name='configuration.DicaService.ConfereEspera',
     index=8,
     containing_service=None,
     input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_ESPERARESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AlteraEspera',
+    full_name='configuration.DicaService.AlteraEspera',
+    index=9,
+    containing_service=None,
+    input_type=_ESPERA,
+    output_type=_ESPERARESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ConfereVez',
+    full_name='configuration.DicaService.ConfereVez',
+    index=10,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     output_type=_NOMEJOGADORRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ConfereFim',
+    full_name='configuration.DicaService.ConfereFim',
+    index=11,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_FIMRESP,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -19,49 +19,34 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         self.palpites = []
         self.vez = 0
         self.fim = False
+        self.ganhador = ''
+        #Mostra se o jogo espera por alguém e quem faz o jogo esperar
+        self.espera = False
+        self.espera_jogador = ''
 
     def PartidaStream(self, request, context):
         print('Esperando Jogadores')
         while len(self.jogadores) < 4:
-            espera = True
-            # fica aqui paradinho
+            self.espera = True
+        
+        self.espera_jogador = self.jogadores[self.vez]
 
-        print('calma')
-        # msg = ''
-        # for k in range(self.numJogadores//2):
-        #     # msg += f''
-        #     # if k % 2 == 0:
-        #     msg = f'Dupla {k +1}: {self.jogadores[k]} e {self.jogadores[k+2]}'
-        # else:
-        #     print(msg)
-        #     msg = ''
         print('Dupla 1: ' + self.jogadores[0] + ' e ' + self.jogadores[2])
         print('Dupla 2: ' + self.jogadores[1] + ' e ' + self.jogadores[3])
 
         # TODO trocar por sorteio
         primeiro_jogador = 0
         self.vez = primeiro_jogador
+        
         print('response: ', dica_pb2.NomeJogadorResp(
             nome=self.jogadores[primeiro_jogador], recebida=True))
 
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[primeiro_jogador], recebida=True)
 
-    def RodadaStream(self, request, context):
-        comeca = False
-        # espera por 10 segundos -> tempo que o jogador leva para digitar
-        # time.sleep(10)
-        while self.palavra == '':
-            # espera enquanto a palavra não é escolhida
-            # time.sleep(1)
-            print('Esperando...')
-            espera = True
-        # comeca = True
-        print(f'A rodada vai começar! {self.palavra}')
+    def ConfereVez(self, request, context):
+        self.espera = True
+        self.espera_jogador = self.jogadores[self.vez]
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[self.vez], recebida=True)
-
-        # return dica_pb2.RodadaResposta(inicia=comeca)
-
-    #     # while self.fim != True:
 
     def CriarJogador(self, request, context):
         self.jogadores.append(request.nome)
@@ -70,6 +55,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
     def EscolherPalavra(self, request, context):
         self.vez += 1
         self.palavra = request.palavra
+        self.espera = False
 
         return dica_pb2.PalavraResp(palavra=self.palavra, recebida=True)
 
@@ -81,14 +67,14 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         #TODO verificações de palavras repetidas
         dica = request.dica
         self.dicas.append(dica)
-
         indice = self.vez+2
 
+        self.espera = False
+        self.espera_jogador = self.jogadores[indice]
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[indice], recebida=True)
 
     def VerDica(self, request, context):
         #TODO verificação se a lista foi atualizada: out of range, caso seja a mesma palavra da rodada anterior
-        
         print(self.vez)
         print(f'Dica: {self.dicas[-1]}')
         return dica_pb2.Dica(dica=self.dicas[-1])
@@ -100,22 +86,30 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         request: requisição do servidor
         '''
         self.palpites.append(request.palpite)
+        self.espera = False
 
         if self.palavra == request.palpite:
             self.fim = True
+            self.ganhador = request.jogador
         else:
             if self.vez == 1:
                 self.vez = 0
             else:
                 self.vez = 1
 
-        
-
     def VerPalpite(self, request, context):
-        '''
-        '''
+        print(f'Palpite: {self.palpites[-1]}')
         return dica_pb2.PalpiteResposta(palpite=self.palpites[-1], acertou=self.fim, recebeu=True)
 
+    def ConfereEspera(self, request, context):
+        return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
+    
+    def AlteraEspera(self, request, context):
+        self.espera = request.espera
+        return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
+
+    def ConfereFim(self, request, context):
+        return dica_pb2.EsperaResp(fim=self.fim, ganhador=self.ganhador)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
