@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"+\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07jogador\x18\x02 \x01(\t\" \n\x0eRodadaResposta\x12\x0e\n\x06inicia\x18\x01 \x01(\x08\"D\n\x0fPalpiteResposta\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x65rtou\x18\x02 \x01(\x08\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x18\n\x06\x45spera\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\"?\n\nEsperaResp\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\x12\x0f\n\x07jogador\x18\x02 \x01(\t\x12\x10\n\x08recebida\x18\x03 \x01(\x08\"(\n\x07\x46imResp\x12\x0b\n\x03\x66im\x18\x01 \x01(\x08\x12\x10\n\x08ganhador\x18\x02 \x01(\x08\x32\xc9\x06\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x42\n\nVerPalavra\x12\x16.google.protobuf.Empty\x1a\x1a.configuration.PalavraResp\"\x00\x12\x38\n\x07VerDica\x12\x16.google.protobuf.Empty\x1a\x13.configuration.Dica\"\x00\x12@\n\x07\x44\x61rDica\x12\x13.configuration.Dica\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nDarPalpite\x12\x16.configuration.Palpite\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nVerPalpite\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.PalpiteResposta\"\x00\x12I\n\rPartidaStream\x12\x16.configuration.Palpite\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12\x44\n\rConfereEspera\x12\x16.google.protobuf.Empty\x1a\x19.configuration.EsperaResp\"\x00\x12\x42\n\x0c\x41lteraEspera\x12\x15.configuration.Espera\x1a\x19.configuration.EsperaResp\"\x00\x12\x46\n\nConfereVez\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nConfereFim\x12\x16.google.protobuf.Empty\x1a\x16.configuration.FimResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\ndica.proto\x12\rconfiguration\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n\x0bNomeJogador\x12\x0c\n\x04nome\x18\x01 \x01(\t\"1\n\x0fNomeJogadorResp\x12\x0c\n\x04nome\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x1a\n\x07Palavra\x12\x0f\n\x07palavra\x18\x01 \x01(\t\"0\n\x0bPalavraResp\x12\x0f\n\x07palavra\x18\x01 \x01(\t\x12\x10\n\x08recebida\x18\x02 \x01(\x08\"\x14\n\x04\x44ica\x12\x0c\n\x04\x64ica\x18\x01 \x01(\t\"+\n\x07Palpite\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07jogador\x18\x02 \x01(\t\" \n\x0eRodadaResposta\x12\x0e\n\x06inicia\x18\x01 \x01(\x08\"D\n\x0fPalpiteResposta\x12\x0f\n\x07palpite\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x65rtou\x18\x02 \x01(\x08\x12\x0f\n\x07recebeu\x18\x03 \x01(\x08\"\x18\n\x06\x45spera\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\"?\n\nEsperaResp\x12\x0e\n\x06\x65spera\x18\x01 \x01(\x08\x12\x0f\n\x07jogador\x18\x02 \x01(\t\x12\x10\n\x08recebida\x18\x03 \x01(\x08\":\n\x07\x46imResp\x12\x0b\n\x03\x66im\x18\x01 \x01(\x08\x12\x15\n\x08ganhador\x18\x02 \x01(\x08H\x00\x88\x01\x01\x42\x0b\n\t_ganhador\"\x1f\n\x0bRecebimento\x12\x10\n\x08recebida\x18\x01 \x01(\x08\x32\x8f\x07\n\x0b\x44icaService\x12L\n\x0c\x43riarJogador\x12\x1a.configuration.NomeJogador\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12G\n\x0f\x45scolherPalavra\x12\x16.configuration.Palavra\x1a\x1a.configuration.PalavraResp\"\x00\x12\x42\n\nVerPalavra\x12\x16.google.protobuf.Empty\x1a\x1a.configuration.PalavraResp\"\x00\x12\x38\n\x07VerDica\x12\x16.google.protobuf.Empty\x1a\x13.configuration.Dica\"\x00\x12@\n\x07\x44\x61rDica\x12\x13.configuration.Dica\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nDarPalpite\x12\x16.configuration.Palpite\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nVerPalpite\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.PalpiteResposta\"\x00\x12I\n\rPartidaStream\x12\x16.configuration.Palpite\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12\x44\n\rConfereEspera\x12\x16.google.protobuf.Empty\x1a\x19.configuration.EsperaResp\"\x00\x12\x42\n\x0c\x41lteraEspera\x12\x15.configuration.Espera\x1a\x19.configuration.EsperaResp\"\x00\x12\x46\n\nConfereVez\x12\x16.google.protobuf.Empty\x1a\x1e.configuration.NomeJogadorResp\"\x00\x12>\n\nConfereFim\x12\x16.google.protobuf.Empty\x1a\x16.configuration.FimResp\"\x00\x12\x44\n\x10MensagemRecebida\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -429,11 +429,51 @@ _FIMRESP = _descriptor.Descriptor(
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_ganhador', full_name='configuration.FimResp._ganhador',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
   serialized_start=478,
-  serialized_end=518,
+  serialized_end=536,
 )
 
+
+_RECEBIMENTO = _descriptor.Descriptor(
+  name='Recebimento',
+  full_name='configuration.Recebimento',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='recebida', full_name='configuration.Recebimento.recebida', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=538,
+  serialized_end=569,
+)
+
+_FIMRESP.oneofs_by_name['_ganhador'].fields.append(
+  _FIMRESP.fields_by_name['ganhador'])
+_FIMRESP.fields_by_name['ganhador'].containing_oneof = _FIMRESP.oneofs_by_name['_ganhador']
 DESCRIPTOR.message_types_by_name['NomeJogador'] = _NOMEJOGADOR
 DESCRIPTOR.message_types_by_name['NomeJogadorResp'] = _NOMEJOGADORRESP
 DESCRIPTOR.message_types_by_name['Palavra'] = _PALAVRA
@@ -445,6 +485,7 @@ DESCRIPTOR.message_types_by_name['PalpiteResposta'] = _PALPITERESPOSTA
 DESCRIPTOR.message_types_by_name['Espera'] = _ESPERA
 DESCRIPTOR.message_types_by_name['EsperaResp'] = _ESPERARESP
 DESCRIPTOR.message_types_by_name['FimResp'] = _FIMRESP
+DESCRIPTOR.message_types_by_name['Recebimento'] = _RECEBIMENTO
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 NomeJogador = _reflection.GeneratedProtocolMessageType('NomeJogador', (_message.Message,), {
@@ -524,6 +565,13 @@ FimResp = _reflection.GeneratedProtocolMessageType('FimResp', (_message.Message,
   })
 _sym_db.RegisterMessage(FimResp)
 
+Recebimento = _reflection.GeneratedProtocolMessageType('Recebimento', (_message.Message,), {
+  'DESCRIPTOR' : _RECEBIMENTO,
+  '__module__' : 'dica_pb2'
+  # @@protoc_insertion_point(class_scope:configuration.Recebimento)
+  })
+_sym_db.RegisterMessage(Recebimento)
+
 
 
 _DICASERVICE = _descriptor.ServiceDescriptor(
@@ -533,8 +581,8 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=521,
-  serialized_end=1362,
+  serialized_start=572,
+  serialized_end=1483,
   methods=[
   _descriptor.MethodDescriptor(
     name='CriarJogador',
@@ -653,6 +701,16 @@ _DICASERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     output_type=_FIMRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='MensagemRecebida',
+    full_name='configuration.DicaService.MensagemRecebida',
+    index=12,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

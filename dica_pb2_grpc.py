@@ -75,6 +75,11 @@ class DicaServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=dica__pb2.FimResp.FromString,
                 )
+        self.MensagemRecebida = channel.unary_unary(
+                '/configuration.DicaService/MensagemRecebida',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class DicaServiceServicer(object):
@@ -164,6 +169,13 @@ class DicaServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MensagemRecebida(self, request, context):
+        """Retorna ao servidor que a mensagem desejada foi recebida
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DicaServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -226,6 +238,11 @@ def add_DicaServiceServicer_to_server(servicer, server):
                     servicer.ConfereFim,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=dica__pb2.FimResp.SerializeToString,
+            ),
+            'MensagemRecebida': grpc.unary_unary_rpc_method_handler(
+                    servicer.MensagemRecebida,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -438,5 +455,22 @@ class DicaService(object):
         return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/ConfereFim',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             dica__pb2.FimResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MensagemRecebida(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/configuration.DicaService/MensagemRecebida',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -40,6 +40,9 @@ service DicaService {
 
     //Verifica se o jogo acabou e retorna o vencedor
     rpc ConfereFim(google.protobuf.Empty) returns(FimResp) {};
+
+    //Retorna ao servidor que a mensagem desejada foi recebida
+    rpc MensagemRecebida(google.protobuf.Empty) returns(google.protobuf.Empty) {};
 }
 
 message NomeJogador {
@@ -91,5 +94,14 @@ message EsperaResp {
 
 message FimResp {
     bool fim = 1;
-    bool ganhador = 2;
+    optional bool ganhador = 2;
+}
+
+message Recebimento{
+    bool recebida = 1;
+    // enum Mensagem {
+    //     DICA = 0;
+    //     PALPITE = 1;
+    // }
+    // string tipo = 2;
 }

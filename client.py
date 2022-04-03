@@ -23,17 +23,20 @@ class Client:
         time.sleep(5)
         while True:
             self.__escutar_rodada()
+
             response = self.stub.ConfereFim(empty)
+            #  só finaliza ou continua depois de todos terem recebido o palpite
             if response.fim:
+                print('Resposta correta!')
                 break
+            print('Não foi dessa vez...')
+            time.sleep(2)
         self.__fim_jogo(response.ganhador)
-        
 
     def __escutar_jogo(self):
         palavra = ''
         print('Esperando Jogadores')
         response = self.stub.PartidaStream(empty)
-        print(f'response:{response}')
         if(response.nome == self.nome):
             palavra = str(
                 input('É a sua vez de escolher a palavra!\nPalavra: '))
@@ -44,39 +47,49 @@ class Client:
         else:
             print(f'{response.nome} está digitando a palavra!')
             self.__espera()
-            
 
-    # tá dando problema quando entra nessa função, mesmo se comentar o RodadaStream
     def __escutar_rodada(self):
-        # inicia = False
-        # while inicia == False:
-        
-        response = self.stub.ConfereVez(empty)
-        print(f'{response.nome} quem dará a dica!')
-        # inicia = response.inicia
 
-        # if inicia == True:
+        response = self.stub.ConfereVez(empty)
+        self.espera_jogador = response.nome
+
+        print(f'{response.nome} quem dará a dica!')
 
         response_dica = dica_pb2.Dica(dica='')
-        response_palpite = dica_pb2.PalpiteResposta(palpite='', acertou=False, recebeu=False)
-        response_enviar_dica = dica_pb2.NomeJogadorResp(nome='', recebida=False)
+        response_palpite = dica_pb2.PalpiteResposta(
+            palpite='', acertou=False, recebeu=False)
+        response_enviar_dica = dica_pb2.NomeJogadorResp(
+            nome='', recebida=False)
+        print(f'vez de: {response.nome}')
+        print(f'eu sou {self.nome}')
 
+        # TODO um loop para esperar nos outros clientes enquanto quem dá a dica n fornece
         if response.nome == self.nome:
             response_palavra = self.stub.VerPalavra(empty)
             print(f"A palavra é: {response_palavra.palavra}")
-            dica = str(input('Forneça a dica: '))
+            # print('É a sua vez de dizer a dica!')
+            dica = str(input('Forneça sua dica: '))
             response_enviar_dica = self.stub.DarDica(dica_pb2.Dica(dica=dica))
-            print('uiuiui', response_enviar_dica)
+            self.espera_jogador = response_enviar_dica
+            print('quem vai: ', self.espera_jogador)
+            response_espera = self.stub.AlteraEspera(
+                dica_pb2.Espera(espera=False))
         else:
             # TODO colocar um try except no loop enquanto a dica não é fornecida
+            # print(f'É a vez de {response.nome} dizer a dica.')
+            time.sleep(1)
             print(f'{response.nome} está digitando a dica!')
             self.__espera()
-        # TODO um loop para esperar nos outros clientes enquanto quem dá a dica n fornece
 
         response_dica = self.stub.VerDica(empty)
+        self.stub.MensagemRecebida(empty)
         print(f"{response.nome} deu a dica: {response_dica.dica}")
 
+        print(f'espero por: {self.espera_jogador}')
+        time.sleep(5)
         self.__espera()
+        print(f'Quem dará o palpite é: {self.espera_jogador}!')
+        # self.espera_jogador = response_espera.jogador
 
         if self.espera_jogador == self.nome:
             palpite = input(f'{self.nome}, digite seu palpite: ')
@@ -84,31 +97,41 @@ class Client:
                 dica_pb2.Palpite(palpite=palpite, jogador=self.nome))
         else:
             print(f'{self.espera_jogador} está digitando o palpite!')
-            self.stub.AlteraEspera(dica_pb2.Espera(espera=True))
+            time.sleep(10)
+            # self.stub.AlteraEspera(dica_pb2.Espera(espera=True))
             self.__espera()
-
+        print(f'ué! {self.nome}')
         response_palpite = self.stub.VerPalpite(empty)
+        self.stub.MensagemRecebida(empty)
+
         print(f'O palpite enviado foi {response_palpite.palpite}')
 
     def __entrar_jogo(self):
         response = self.stub.CriarJogador(
             dica_pb2.NomeJogador(nome=self.nome))
         print(f'resp: {response}')
-    
+
     def __espera(self):
         while True:
-            print('esperando')
+            # print('esperando')
             response = self.stub.ConfereEspera(empty)
-            self.espera_jogador = response.jogador
+
+            print(f'estou esperando: {self.espera_jogador}')
+            print(f'{response.jogador} e {response.espera}')
+            if response.espera == True:
+                print(f'Esperando por: {response.jogador}')
+                self.espera_jogador = response.jogador
+                if self.espera_jogador == self.nome:
+                    break
             if response.espera == False:
                 break
             time.sleep(3)
-            print(response.espera)
-    
+
+            # print(response.espera)
+
     def __fim_jogo(self, ganhador):
         #print(f'A palavra é: {response_palpite.palpite}!')
         print((f'Parabéns! {ganhador} ganhou o jogo!!!'))
-
 
 
 # adicionar as portas que o cliente vai acessar
