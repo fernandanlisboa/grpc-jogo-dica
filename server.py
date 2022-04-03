@@ -29,21 +29,16 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         self.msg_recebidas = 0
 
     def PartidaStream(self, request, context):
-        print('Esperando Jogadores')
         while len(self.jogadores) < 4:
             self.espera = True
-
-        self.espera_jogador = self.jogadores[self.vez]
-
-        print('Dupla 1: ' + self.jogadores[0] + ' e ' + self.jogadores[2])
-        print('Dupla 2: ' + self.jogadores[1] + ' e ' + self.jogadores[3])
 
         # TODO trocar por sorteio
         primeiro_jogador = 0
         self.vez = primeiro_jogador
+        self.espera_jogador = self.jogadores[self.vez]
 
-        print('response: ', dica_pb2.NomeJogadorResp(
-            nome=self.jogadores[primeiro_jogador], recebida=True))
+        print('Dupla 1: ' + self.jogadores[0] + ' e ' + self.jogadores[2])
+        print('Dupla 2: ' + self.jogadores[1] + ' e ' + self.jogadores[3])
 
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[primeiro_jogador], recebida=True)
 
@@ -58,7 +53,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
     def ConfereVez(self, request, context):
         self.espera = True
         self.espera_jogador = self.jogadores[self.vez]
-        print('Estamos esperando por ', self.espera_jogador)
+        # print('Estamos esperando por ', self.espera_jogador)
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[self.vez], recebida=True)
 
     def CriarJogador(self, request, context):
@@ -78,7 +73,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
 
     def MensagemRecebida(self, request, context):
         # if request.recebida == True:
-        print('MENSAGEM RECEBIDA!')
+        # print('MENSAGEM RECEBIDA!')
         self.msg_recebidas += 1
         return _EMPTY
 
@@ -86,22 +81,22 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         # TODO verificações de palavras repetidas
         dica = request.dica
         self.dicas.append(dica)
-        # self.vez += 2
         indice = self.vez+2
+        self.espera_jogador = self.jogadores[indice]
 
         # self.espera = False
         # self.espera_jogador = self.jogadores[indice]
-        print(f'Agora esperamos: {self.espera_jogador}')
+        # print(f'Agora esperamos: {self.espera_jogador}')
         return dica_pb2.NomeJogadorResp(nome=self.jogadores[indice], recebida=True)
 
     def VerDica(self, request, context):
         # TODO verificação se a lista foi atualizada: out of range, caso seja a mesma palavra da rodada anterior
-        print(self.vez)
-        print(f'Dica: {self.dicas[-1]}')
+        # print(self.vez)
+        # print(f'Dica: {self.dicas[-1]}')
         # altera a vez só após todos os usuários receberem a dica!
-        print(f'recebido {self.msg_recebidas} vezes')
+        # print(f'recebido {self.msg_recebidas} vezes')
         if self.msg_recebidas == len(self.jogadores)-1:
-            print('entrou no if')
+            # print('entrou no if')
             self.vez += 2
             self.espera_jogador = self.jogadores[self.vez]
             self.espera = True
@@ -115,8 +110,8 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         request: requisição do servidor
         '''
         self.msg_recebidas = 0
-        print(f'{request.palpite}')
-        print(f'{request.jogador}')
+        # print(f'{request.palpite}')
+        # print(f'{request.jogador}')
         palpite = request.palpite
         self.palpites.append(palpite)
         print(f'palpites:\n {self.palpites}')
@@ -135,30 +130,23 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
             elif self.vez == 2:
                 self.vez = 1
 
-            # 0 1 2 3
-            # D
-            #     P
-            #   D
-            #       P
-            # D
-            #   ...
         self.espera = False
 
         return _EMPTY
 
     def VerPalpite(self, request, context):
-        print(f'Palpite: {self.palpites[-1]}')
-        if self.msg_recebidas == 3:
-            print(f'vez de {self.jogadores[self.vez]}')
+        # print(f'Palpite: {self.palpites[-1]}')
+        # if self.msg_recebidas == 3:
+        #     print(f'vez de {self.jogadores[self.vez]}')
         return dica_pb2.PalpiteResposta(palpite=self.palpites[-1], acertou=self.fim, recebeu=True)
 
     def ConfereEspera(self, request, context):
-        print(f'espera por: {self.espera_jogador}')
+        # print(f'espera por: {self.espera_jogador}')
         return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
 
     def AlteraEspera(self, request, context):
         self.espera = request.espera
-        print(f'espera alterada para: {self.espera}')
+        # print(f'espera alterada para: {self.espera}')
         return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
 
     def ConfereFim(self, request, context):

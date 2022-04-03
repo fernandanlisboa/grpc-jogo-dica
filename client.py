@@ -60,8 +60,8 @@ class Client:
             palpite='', acertou=False, recebeu=False)
         response_enviar_dica = dica_pb2.NomeJogadorResp(
             nome='', recebida=False)
-        print(f'vez de: {response.nome}')
-        print(f'eu sou {self.nome}')
+        # print(f'vez de: {response.nome}')
+        # print(f'eu sou {self.nome}')
 
         # TODO um loop para esperar nos outros clientes enquanto quem dá a dica n fornece
         if response.nome == self.nome:
@@ -71,7 +71,7 @@ class Client:
             dica = str(input('Forneça sua dica: '))
             response_enviar_dica = self.stub.DarDica(dica_pb2.Dica(dica=dica))
             self.espera_jogador = response_enviar_dica
-            print('quem vai: ', self.espera_jogador)
+            # print('quem vai: ', self.espera_jogador)
             response_espera = self.stub.AlteraEspera(
                 dica_pb2.Espera(espera=False))
         else:
@@ -85,13 +85,14 @@ class Client:
         self.stub.MensagemRecebida(empty)
         print(f"{response.nome} deu a dica: {response_dica.dica}")
 
-        print(f'espero por: {self.espera_jogador}')
+        # print(f'espero por: {self.espera_jogador}')
         time.sleep(5)
-        self.__espera()
+        # self.__espera()
         print(f'Quem dará o palpite é: {self.espera_jogador}!')
         # self.espera_jogador = response_espera.jogador
 
         if self.espera_jogador == self.nome:
+            print('uiui 1')
             palpite = input(f'{self.nome}, digite seu palpite: ')
             self.stub.DarPalpite(
                 dica_pb2.Palpite(palpite=palpite, jogador=self.nome))
@@ -100,7 +101,7 @@ class Client:
             time.sleep(10)
             # self.stub.AlteraEspera(dica_pb2.Espera(espera=True))
             self.__espera()
-        print(f'ué! {self.nome}')
+        # print(f'ué! {self.nome}')
         response_palpite = self.stub.VerPalpite(empty)
         self.stub.MensagemRecebida(empty)
 
@@ -118,11 +119,10 @@ class Client:
 
             print(f'estou esperando: {self.espera_jogador}')
             print(f'{response.jogador} e {response.espera}')
-            if response.espera == True:
-                print(f'Esperando por: {response.jogador}')
-                self.espera_jogador = response.jogador
-                if self.espera_jogador == self.nome:
-                    break
+            # if response.espera == True:
+            print(f'Esperando por: {response.jogador}')
+            self.espera_jogador = response.jogador
+
             if response.espera == False:
                 break
             time.sleep(3)
