@@ -1,0 +1,166 @@
+from queue import Empty
+import grpc
+import time
+from concurrent import futures
+
+import dica_pb2_grpc
+import dica_pb2
+
+_ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+_EMPTY = dica_pb2.google_dot_protobuf_dot_empty__pb2.Empty()
+
+
+class DicaServer(dica_pb2_grpc.DicaServiceServicer):
+
+    def __init__(self):
+        self.palavra = ''
+        self.numJogadores = 4
+        self.jogadores = []
+        self.dicas = []
+        self.palpites = []
+        self.vez = 0
+        self.fim = False
+        self.ganhador = []
+        # Mostra se o jogo espera por alguém e quem faz o jogo esperar
+        self.espera = False
+        self.espera_jogador = ''
+        self.rodadas = 1
+        self.msg_recebidas = 0
+
+    def PartidaStream(self, request, context):
+        while len(self.jogadores) < 4:
+            self.espera = True
+
+        # TODO trocar por sorteio
+        primeiro_jogador = 0
+        self.vez = primeiro_jogador
+        self.espera_jogador = self.jogadores[self.vez]
+
+        print('Dupla 1: ' + self.jogadores[0] + ' e ' + self.jogadores[2])
+        print('Dupla 2: ' + self.jogadores[1] + ' e ' + self.jogadores[3])
+
+        return dica_pb2.NomeJogadorResp(nome=self.jogadores[primeiro_jogador], recebida=True)
+
+    def MostrarJogadores(self, request, context):
+
+        return dica_pb2.Jogadores(jogador1=self.jogadores[0], jogador2=self.jogadores[1], jogador3=self.jogadores[2], jogador4=self.jogadores[3])
+
+    def ConfereVez(self, request, context):
+        self.espera = True
+        self.espera_jogador = self.jogadores[self.vez]
+        # print('Estamos esperando por ', self.espera_jogador)
+        return dica_pb2.NomeJogadorResp(nome=self.jogadores[self.vez], recebida=True)
+
+    def CriarJogador(self, request, context):
+        self.jogadores.append(request.nome)
+        return dica_pb2.NomeJogadorResp(nome=request.nome, recebida=True)
+
+    def EscolherPalavra(self, request, context):
+        self.vez += 1
+        self.palavra = request.palavra
+        self.espera = False
+
+        return dica_pb2.PalavraResp(palavra=self.palavra, recebida=True)
+
+    def VerPalavra(self, request, context):
+        return dica_pb2.PalavraResp(palavra=self.palavra, recebida=True)
+
+    def MensagemRecebida(self, request, context):
+        self.msg_recebidas += 1
+        return _EMPTY
+
+    def DarDica(self, request, context):
+        # TODO verificações de palavras repetidas
+        dica = request.dica
+        self.dicas.append(dica)
+        indice = self.vez+2
+        self.espera_jogador = self.jogadores[indice]
+
+        return dica_pb2.NomeJogadorResp(nome=self.jogadores[indice], recebida=True)
+
+    def VerDica(self, request, context):
+        # TODO verificação se a lista foi atualizada: out of range, caso seja a mesma palavra da rodada anterior
+
+        if self.msg_recebidas == len(self.jogadores)-1:
+            self.vez += 2
+            self.espera_jogador = self.jogadores[self.vez]
+            self.espera = True
+
+        return dica_pb2.Dica(dica=self.dicas[-1])
+
+    def DarPalpite(self, request, context):
+        # TODO verificações de palavras repetidas
+        '''
+        recebe o palpite enviado pelo jogador e retorna se é igual ao da palavra escolhida
+        request: requisição do servidor
+        '''
+        self.msg_recebidas = 0
+        palpite = request.palpite
+        self.palpites.append(palpite)
+        print(f'palpites:\n {self.palpites}')
+        if palpite == self.palavra:
+            nome = request.jogador
+            self.fim = True
+            indice_ganhador = self.jogadores.index(nome)
+            if indice_ganhador == 3:
+                indice_ganhador = 1
+            elif indice_ganhador == 2:
+                indice_ganhador = 0
+            print(f'Nome: {self.jogadores[indice_ganhador]}')
+
+            self.ganhador.append(self.jogadores[indice_ganhador])
+            self.ganhador.append(self.jogadores[indice_ganhador+2])
+
+        else:
+            self.rodadas += 1
+
+            # TODO modificar a lógica de passar a vez caso mude para sorteio
+            # TODO array para armazenar indices dos jogadores que darão as dicas na partida
+            if self.vez == 3:
+                self.vez = 0
+            elif self.vez == 2:
+                self.vez = 1
+
+        self.espera = False
+
+        return _EMPTY
+
+    def VerPalpite(self, request, context):
+        return dica_pb2.PalpiteResposta(palpite=self.palpites[-1], acertou=self.fim, recebeu=True)
+
+    def ConfereEspera(self, request, context):
+        return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
+
+    def AlteraEspera(self, request, context):
+        self.espera = request.espera
+        return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
+
+    def ConfereFim(self, request, context):
+        self.msg_recebidas = 0
+        if self.fim == True:
+            return dica_pb2.FimResp(fim=self.fim, ganhador1=self.ganhador[0], ganhador2=self.ganhador[1])
+        else:
+            return dica_pb2.FimResp(fim=self.fim)
+
+
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    dica_pb2_grpc.add_DicaServiceServicer_to_server(
+        DicaServer(), server)
+
+    for i in range(50050, 50053, 1):
+        server.add_insecure_port('[::]:' + str(i))
+
+    server.start()
+
+    try:
+        while True:
+            time.sleep(_ONE_DAY_IN_SECONDS)
+    except KeyboardInterrupt:
+        server.stop(0)
+
+
+if __name__ == '__main__':
+    serve()
+    print('Iniciando o jogo...')

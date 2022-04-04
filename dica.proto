@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package configuration;
+
+service DicaService {
+    //Recebe o nome dos jogadores
+    rpc CriarJogador(NomeJogador) returns (NomeJogadorResp) {};
+
+    //Define a palavra que será adivinhada na partida
+    rpc EscolherPalavra(Palavra) returns (PalavraResp){};
+
+    //O jogador que fornece a dica deve receber a palavra
+    rpc VerPalavra(google.protobuf.Empty) returns (PalavraResp) {};
+
+    // envia a dica do jogador 
+    rpc VerDica(google.protobuf.Empty) returns (Dica) {};
+
+    // o jogador define a dica e retorna o nome do jogador que realizará o palpite
+    rpc DarDica(Dica) returns (NomeJogadorResp) {};
+
+    // recebe o palpite do jogador
+    rpc DarPalpite(Palpite) returns (google.protobuf.Empty) {};
+
+    // mostra o palpite do jogador
+    rpc VerPalpite(google.protobuf.Empty) returns (PalpiteResposta) {};
+
+    // loop da partida
+    rpc PartidaStream(Palpite) returns (NomeJogadorResp) {};
+
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc ConfereEspera(google.protobuf.Empty) returns(EsperaResp) {};
+
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc AlteraEspera(Espera) returns(EsperaResp) {};
+
+    //Verifica se os jogadores estão esperando um evento do sistema
+    rpc ConfereVez(google.protobuf.Empty) returns(NomeJogadorResp) {};
+
+    //Verifica se o jogo acabou e retorna o vencedor
+    rpc ConfereFim(google.protobuf.Empty) returns(FimResp) {};
+
+    //Retorna ao servidor que a mensagem desejada foi recebida
+    rpc MensagemRecebida(google.protobuf.Empty) returns(google.protobuf.Empty) {};
+
+    rpc MostrarJogadores(google.protobuf.Empty) returns(Jogadores) {};
+}
+
+message NomeJogador {
+    string nome = 1;
+}
+
+message NomeJogadorResp {
+    string nome = 1;
+    bool recebida = 2;
+}
+
+message Palavra {
+    string palavra = 1;
+}
+
+message PalavraResp {
+    string palavra = 1;
+    bool recebida = 2;
+}
+
+message Dica {
+    string dica = 1;
+}
+
+message Palpite {
+    string palpite = 1;
+    string jogador = 2;
+}
+
+message RodadaResposta {
+    bool inicia = 1;
+}
+
+message PalpiteResposta {
+    string palpite = 1;
+    bool acertou = 2;
+    bool recebeu = 3;
+}
+
+message Espera {
+    bool espera = 1;
+}
+
+message EsperaResp {
+    bool espera = 1;
+    string jogador = 2;
+    bool recebida = 3;
+}
+
+message FimResp {
+    bool fim = 1;
+    optional string ganhador1 = 2;
+    optional string ganhador2 = 3;
+}
+
+message Jogadores {
+    string jogador1 = 1;
+    string jogador2 = 2;
+    string jogador3 = 3;
+    string jogador4 = 4;
+}
+
+message Recebimento{
+    bool recebida = 1;
+    // enum Mensagem {
+    //     DICA = 0;
+    //     PALPITE = 1;
+    // }
+    // string tipo = 2;
+}
