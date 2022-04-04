@@ -130,6 +130,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
             elif self.vez == 2:
                 self.vez = 1
 
+
         self.espera = False
 
         return _EMPTY
@@ -141,12 +142,12 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         return dica_pb2.PalpiteResposta(palpite=self.palpites[-1], acertou=self.fim, recebeu=True)
 
     def ConfereEspera(self, request, context):
-        # print(f'espera por: {self.espera_jogador}')
+        print(f'espera por: {self.espera_jogador}')
         return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
 
     def AlteraEspera(self, request, context):
         self.espera = request.espera
-        # print(f'espera alterada para: {self.espera}')
+        print(f'espera alterada para: {self.espera}')
         return dica_pb2.EsperaResp(espera=self.espera, jogador=self.espera_jogador, recebida=True)
 
     def ConfereFim(self, request, context):

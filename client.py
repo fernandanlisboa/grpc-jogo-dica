@@ -85,23 +85,26 @@ class Client:
         self.stub.MensagemRecebida(empty)
         print(f"{response.nome} deu a dica: {response_dica.dica}")
 
-        # print(f'espero por: {self.espera_jogador}')
+
         time.sleep(5)
         # self.__espera()
         print(f'Quem dará o palpite é: {self.espera_jogador}!')
         # self.espera_jogador = response_espera.jogador
 
         if self.espera_jogador == self.nome:
-            print('uiui 1')
             palpite = input(f'{self.nome}, digite seu palpite: ')
             self.stub.DarPalpite(
                 dica_pb2.Palpite(palpite=palpite, jogador=self.nome))
+            response_espera = self.stub.AlteraEspera(
+                dica_pb2.Espera(espera=False))
         else:
             print(f'{self.espera_jogador} está digitando o palpite!')
             time.sleep(10)
             # self.stub.AlteraEspera(dica_pb2.Espera(espera=True))
             self.__espera()
-        # print(f'ué! {self.nome}')
+            
+        time.sleep(10)
+        print(f'ué! {self.nome}')
         response_palpite = self.stub.VerPalpite(empty)
         self.stub.MensagemRecebida(empty)
 
@@ -119,7 +122,6 @@ class Client:
 
             print(f'estou esperando: {self.espera_jogador}')
             print(f'{response.jogador} e {response.espera}')
-            # if response.espera == True:
             print(f'Esperando por: {response.jogador}')
             self.espera_jogador = response.jogador
 
