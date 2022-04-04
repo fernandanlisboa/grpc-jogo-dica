@@ -21,7 +21,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         self.palpites = []
         self.vez = 0
         self.fim = False
-        self.ganhador = ''
+        self.ganhador = []
         # Mostra se o jogo espera por alguém e quem faz o jogo esperar
         self.espera = False
         self.espera_jogador = ''
@@ -116,8 +116,21 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
         self.palpites.append(palpite)
         print(f'palpites:\n {self.palpites}')
         if palpite == self.palavra:
+            nome = request.jogador
+            print(f'nome: {request.jogador}')
             self.fim = True
-            self.ganhador = request.jogador
+            indice_ganhador = self.jogadores.index(nome)
+            print(indice_ganhador)
+            # self.jogador[self.vez]
+            if indice_ganhador == 3:
+                indice_ganhador = 1
+            elif indice_ganhador == 2:
+                indice_ganhador = 0
+            print(f'Nome: {self.jogadores[indice_ganhador]}')
+
+            self.ganhador.append(self.jogadores[indice_ganhador])
+            self.ganhador.append(self.jogadores[indice_ganhador+2])
+
             print('entrou no IF -> GANHOU')
         else:
             self.rodadas += 1
@@ -129,7 +142,6 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
                 self.vez = 0
             elif self.vez == 2:
                 self.vez = 1
-
 
         self.espera = False
 
@@ -153,7 +165,7 @@ class DicaServer(dica_pb2_grpc.DicaServiceServicer):
     def ConfereFim(self, request, context):
         self.msg_recebidas = 0
         if self.fim == True:
-            return dica_pb2.FimResp(fim=self.fim, ganhador=self.ganhador)
+            return dica_pb2.FimResp(fim=self.fim, ganhador1=self.ganhador[0], ganhador2=self.ganhador[1])
         else:
             return dica_pb2.FimResp(fim=self.fim)
 

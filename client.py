@@ -31,7 +31,7 @@ class Client:
                 break
             print('Não foi dessa vez...')
             time.sleep(2)
-        self.__fim_jogo(response.ganhador)
+        self.__fim_jogo(response.ganhador1, response.ganhador2)
 
     def __escutar_jogo(self):
         palavra = ''
@@ -85,7 +85,6 @@ class Client:
         self.stub.MensagemRecebida(empty)
         print(f"{response.nome} deu a dica: {response_dica.dica}")
 
-
         time.sleep(5)
         # self.__espera()
         print(f'Quem dará o palpite é: {self.espera_jogador}!')
@@ -102,7 +101,7 @@ class Client:
             time.sleep(10)
             # self.stub.AlteraEspera(dica_pb2.Espera(espera=True))
             self.__espera()
-            
+
         time.sleep(10)
         print(f'ué! {self.nome}')
         response_palpite = self.stub.VerPalpite(empty)
@@ -131,9 +130,9 @@ class Client:
 
             # print(response.espera)
 
-    def __fim_jogo(self, ganhador):
+    def __fim_jogo(self, ganhadorA, ganhadorB):
         #print(f'A palavra é: {response_palpite.palpite}!')
-        print((f'Parabéns! {ganhador} ganhou o jogo!!!'))
+        print((f'Parabéns! {ganhadorA} e {ganhadorB} ganharam o jogo!!!'))
 
 
 # adicionar as portas que o cliente vai acessar

@@ -94,7 +94,8 @@ message EsperaResp {
 
 message FimResp {
     bool fim = 1;
-    optional bool ganhador = 2;
+    optional string ganhador1 = 2;
+    optional string ganhador2 = 3;
 }
 
 message Recebimento{
