@@ -43,6 +43,8 @@ service DicaService {
 
     //Retorna ao servidor que a mensagem desejada foi recebida
     rpc MensagemRecebida(google.protobuf.Empty) returns(google.protobuf.Empty) {};
+
+    rpc MostrarJogadores(google.protobuf.Empty) returns(Jogadores) {};
 }
 
 message NomeJogador {
@@ -96,6 +98,13 @@ message FimResp {
     bool fim = 1;
     optional string ganhador1 = 2;
     optional string ganhador2 = 3;
+}
+
+message Jogadores {
+    string jogador1 = 1;
+    string jogador2 = 2;
+    string jogador3 = 3;
+    string jogador4 = 4;
 }
 
 message Recebimento{
