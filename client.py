@@ -6,6 +6,8 @@ import grpc
 import dica_pb2_grpc
 import dica_pb2
 
+import redis
+
 empty = dica_pb2.google_dot_protobuf_dot_empty__pb2.Empty()
 
 
@@ -122,7 +124,10 @@ class Client:
             time.sleep(3)
 
     def __fim_jogo(self, ganhadorA, ganhadorB):
-        print((f'Parabéns! {ganhadorA} e {ganhadorB} ganharam o jogo!!!'))
+        r = redis.Redis(host='localhost', port=6379)
+        r.set('ganhadores', ganhadorA + ' ' + 'e' + ' ' + ganhadorB)
+        ganhadores = r.get('ganhadores')
+        print((f'Parabéns! {ganhadores} ganharam o jogo!!!'))
 
 
 if __name__ == '__main__':

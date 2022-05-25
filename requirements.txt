@@ -1,0 +1,15 @@
+
+coverage>=4.0
+cython>=0.29.8
+six>=1.10
+wheel>=0.29
+grpcio==1.42.0
+grpcio-tools==1.35.0
+async-timeout==4.0.2
+Deprecated==1.2.13
+packaging==21.3
+protobuf==3.19.1
+pyparsing==3.0.9
+redis==4.3.1
+uvicorn==0.17.6
+wrapt==1.14.1
