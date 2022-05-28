@@ -4,12 +4,12 @@ services:
     server: 
         build:
             context: .
-            dockerfile: Dockerfile #especifica qual dockerfile vai ser usada
+            dockerfile: Dockerfile
         ports:
             - "50051:50051"
-        command: python3 server.py #comando para executar
+        command: python3 server.py
         volumes: 
-            - .:/usr/app #cria o container no disco
+            - .:/usr/app
 
     redis-compose:
         image: redis
